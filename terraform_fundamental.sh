@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo -e "\033[0;35mDibuat oleh RAMZDH\033[0m"
 echo "🔍 Verifying Terraform installation..."
 terraform --version || { echo "❌ Terraform not installed!"; exit 1; }
 
