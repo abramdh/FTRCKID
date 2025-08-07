@@ -4,11 +4,6 @@ echo "🟣═══════════════════════�
 echo "             🚀 Cloudrun Secret Setup - By RAMZ DH 🧠             "
 echo "🟣═════════════════════════════════════════════════════════════════════🟣"
 
-PURPLE='\033[1;35m'
-NC='\033[0m' # No Color
-
-echo -e "${PURPLE}💜 Code By RAMZ 💜${NC}"
-
 # Prompt for manual input
 read -p "Enter your PROJECT_ID: " PROJECT_ID
 read -p "Enter your REGION (e.g., us-east1): " REGION
