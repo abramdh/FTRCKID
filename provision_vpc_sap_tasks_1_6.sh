@@ -1,10 +1,10 @@
-# Set your Google Cloud project ID here
+# Set Project ID
 read -p "Enter your Google Cloud Project ID: " PROJECT_ID
-
-# Set the project ID for gcloud
+read -p "Enter your preferred region (e.g. us-east1): " REGION
 gcloud config set project "$PROJECT_ID"
+gcloud config set compute/region "$REGION"
 
-# Task 1: Create VPC Network
+# Task 1: Buat VPC NETWORK
 gcloud compute networks create xall-vpc--vpc-01 \
   --description="XYZ-all VPC network = Standard VPC network - 01" \
   --project="$PROJECT_ID" \
@@ -12,7 +12,7 @@ gcloud compute networks create xall-vpc--vpc-01 \
   --bgp-routing-mode=global \
   --mtu=1460
 
-# Task 2: Create Subnet
+# Task 2: Buat Subnet
 gcloud compute networks subnets create xgl-subnet--cerps-bau-nonprd--be1-01 \
   --description="XYZ-Global subnet = CERPS-BaU-NonProd - Belgium 1 (GCP) - 01" \
   --project="$PROJECT_ID" \
@@ -123,7 +123,7 @@ gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4app
     --addresses=10.1.1.103
 
 # -----------------------------------------
-# Task 7: Create Cloud NAT service(s)
+# Task 7: Buat Cloud NAT service(s)
 # -----------------------------------------
 gcloud compute routers create xall-vpc--vpc-01--xall-router--shared-nat--de1-01 \
     --description="xall-vpc--vpc-01 - XYZ-Global router = Shared NAT - Germany 1 (GCP) - 01" \
