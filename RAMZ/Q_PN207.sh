@@ -36,5 +36,3 @@ docker run --rm -v "$PWD":/app -w /app -e DEVSHELL_PROJECT_ID=$PROJECT_ID python
 
 echo "✅ Done! Check Cloud Console > Dataflow to monitor your job 🎯"
 echo "Made with 💜 by RAMZ DH"
-
-
