@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Set your Google Cloud project ID here
 read -p "Enter your Google Cloud Project ID: " PROJECT_ID
 
