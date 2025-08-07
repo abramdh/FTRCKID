@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Set your Google Cloud project ID here
-PROJECT_ID="your-project-id"
+read -p "Enter your Google Cloud Project ID: " PROJECT_ID
+
+# Set the project ID for gcloud
+gcloud config set project "$PROJECT_ID"
 
 # Task 1: Create VPC Network
 gcloud compute networks create xall-vpc--vpc-01 \
