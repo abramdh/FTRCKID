@@ -89,3 +89,53 @@ gcloud compute firewall-rules create xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-
   --target-tags=xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-ds4--v01 \
   --source-tags=xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-ds4--v01 \
   --rules=tcp,udp,icmp
+
+# -----------------------------------------
+# Task 6: Reserve static internal IP address(s)
+# -----------------------------------------
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--dh1--d-cerpshana1 \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP HANA 1 (DH1) - d-cerpshana1" \
+    --project=$PROJECT_ID \
+    --region=us-east1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    --addresses=10.1.1.100
+
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4db \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP S4 (DS4) - d-cerpss4db" \
+    --project=$PROJECT_ID \
+    --region=us-east1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    --addresses=10.1.1.101
+
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4scs \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP S4 (DS4) - d-cerpss4scs" \
+    --project=$PROJECT_ID \
+    --region=us-east1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    --addresses=10.1.1.102
+
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4app1 \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP S4 (DS4) - d-cerpss4app1" \
+    --project=$PROJECT_ID \
+    --region=us-east1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    --addresses=10.1.1.103
+
+# -----------------------------------------
+# Task 7: Create Cloud NAT service(s)
+# -----------------------------------------
+gcloud compute routers create xall-vpc--vpc-01--xall-router--shared-nat--de1-01 \
+    --description="xall-vpc--vpc-01 - XYZ-Global router = Shared NAT - Germany 1 (GCP) - 01" \
+    --project=$PROJECT_ID \
+    --region=us-east1 \
+    --network=xall-vpc--vpc-01
+
+gcloud compute routers nats create xall-vpc--vpc-01--xall-nat-gw--shared-nat--de1-01 \
+    --project=$PROJECT_ID \
+    --region=us-east1 \
+    --router=xall-vpc--vpc-01--xall-router--shared-nat--de1-01 \
+    --auto-allocate-nat-external-ips \
+    --nat-all-subnet-ip-ranges \
+    --enable-logging
+
+
