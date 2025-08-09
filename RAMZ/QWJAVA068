@@ -1,0 +1,21 @@
+echo "🟣═════════════════════════════════════════════════════════════════════🟣"
+echo "             🚀 Cloudrun Secret Setup - By RAMZ DH 🧠             "
+echo "🟣═════════════════════════════════════════════════════════════════════🟣"
+
+# 1️⃣ Download sample HTTP Server app
+gcloud storage cp -r gs://spls/gsp068/appengine-java21/appengine-java21/* .
+
+# 2️⃣ Masuk ke folder project
+cd helloworld/http-server
+
+# 3️⃣ Minta input region untuk App Engine
+read -p "Masukkan REGION App Engine (contoh: us-central): " REGION
+
+# 4️⃣ Buat App Engine application
+gcloud app create --region=$REGION --quiet
+
+# 5️⃣ Deploy aplikasi ke App Engine
+gcloud app deploy --quiet
+
+# 6️⃣ Buka aplikasi di browser
+gcloud app browse
