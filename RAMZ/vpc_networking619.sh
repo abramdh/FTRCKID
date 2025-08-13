@@ -12,8 +12,6 @@ echo "Masukkan REGION 2 (contoh: us-east4):"
 read REGION2
 echo "Masukkan ZONE 2 (contoh: us-east4-b):"
 read ZONE2
-echo "Masukkan SHARED_SECRET untuk VPN:"
-read SHARED_SECRET
 
 echo "=== Task 1: Membuat VPC vpc-demo ==="
 gcloud compute networks create vpc-demo --subnet-mode custom
@@ -74,22 +72,22 @@ gcloud compute routers create on-prem-router1 \
 echo "=== Membuat VPN Tunnels ==="
 gcloud beta compute vpn-tunnels create vpc-demo-tunnel0 \
   --peer-gcp-gateway on-prem-vpn-gw1 --region "$REGION1" \
-  --ike-version 2 --shared-secret "$SHARED_SECRET" \
+  --ike-version 2 --shared-secret [SHARED_SECRET] \
   --router vpc-demo-router1 --vpn-gateway vpc-demo-vpn-gw1 --interface 0
 
 gcloud beta compute vpn-tunnels create vpc-demo-tunnel1 \
   --peer-gcp-gateway on-prem-vpn-gw1 --region "$REGION1" \
-  --ike-version 2 --shared-secret "$SHARED_SECRET" \
+  --ike-version 2 --shared-secret [SHARED_SECRET] \
   --router vpc-demo-router1 --vpn-gateway vpc-demo-vpn-gw1 --interface 1
 
 gcloud beta compute vpn-tunnels create on-prem-tunnel0 \
   --peer-gcp-gateway vpc-demo-vpn-gw1 --region "$REGION1" \
-  --ike-version 2 --shared-secret "$SHARED_SECRET" \
+  --ike-version 2 --shared-secret [SHARED_SECRET] \
   --router on-prem-router1 --vpn-gateway on-prem-vpn-gw1 --interface 0
 
 gcloud beta compute vpn-tunnels create on-prem-tunnel1 \
   --peer-gcp-gateway vpc-demo-vpn-gw1 --region "$REGION1" \
-  --ike-version 2 --shared-secret "$SHARED_SECRET" \
+  --ike-version 2 --shared-secret [SHARED_SECRET] \
   --router on-prem-router1 --vpn-gateway on-prem-vpn-gw1 --interface 1
 
 echo "=== BGP Peering untuk vpc-demo ==="
